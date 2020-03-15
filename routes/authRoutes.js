@@ -25,14 +25,18 @@ module.exports = app => {
     '/auth/spotify/callback',
     passport.authenticate('spotify', { session: false, failureRedirect: '/login' }),
     async function(req, res) {
-      await axios.post('http://localhost:8080/login', {
-        accessToken: req.user.accessToken,
-        refreshToken: req.user.refreshToken
-      });
-      // const template =
-      // ("<script type='text/javascript'>window.open('', '_self', '');window.close();</script>");
-      // return res.send(template);
-      res.send('Login successfully!');
+      try {
+        await axios.post('http://localhost:8080/login', {
+          accessToken: req.user.accessToken,
+          refreshToken: req.user.refreshToken
+        });
+        // const template =
+        // ("<script type='text/javascript'>window.open('', '_self', '');window.close();</script>");
+        // return res.send(template);
+        res.send('Login successfully!');
+      } catch (err) {
+        console.log(err);
+      }
     }
   );
 

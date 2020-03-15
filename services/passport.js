@@ -7,7 +7,7 @@ passport.use(
     {
       clientID: keys.spotifyClientID,
       clientSecret: keys.spotifyClientSecret,
-      // callbackURL: 'http://localhost:8080/auth/spotify/callback'
+      // callbackURL: 'https://localhost:5000/auth/spotify/callback'
       callbackURL: '/auth/spotify/callback'
     },
     async (accessToken, refreshToken, profile, done) => {
