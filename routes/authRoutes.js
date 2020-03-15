@@ -24,8 +24,8 @@ module.exports = app => {
   app.get(
     '/auth/spotify/callback',
     passport.authenticate('spotify', { session: false, failureRedirect: '/login' }),
-    function(req, res) {
-      axios.post('http://localhost:8080/login', {
+    async function(req, res) {
+      await axios.post('http://localhost:8080/login', {
         accessToken: req.user.accessToken,
         refreshToken: req.user.refreshToken
       });
